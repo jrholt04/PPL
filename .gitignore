@@ -1,0 +1,8 @@
+# Compiled object files
+*.o
+
+# executable
+huffman
+
+#tar files 
+.tar
