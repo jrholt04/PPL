@@ -1,6 +1,8 @@
 // File: tree.h
 // Author: J Holt Transy U
 // Course: PPL
+// sources: 
+//  strpy(): https://www.geeksforgeeks.org/c/strcpy-in-c/ Accessed 10/31/25. 
 //
 // Headerfile for tree 
 #ifndef TREE_H
@@ -8,8 +10,10 @@
 
 #include <stdio.h>
 
+#define MAX_NAME_SIZE 1000
+
 typedef struct node {
-    char* name;
+    char name[MAX_NAME_SIZE];
     int freq;
     struct node* rightChild;
     struct node* leftChild;

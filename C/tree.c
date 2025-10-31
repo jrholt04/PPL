@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "tree.h"
 
 int getFreq(node* node){
@@ -8,9 +11,9 @@ char* getName(node* node){
     return node->name;
 }
  
-node* createNode(char* name, int freq, node* leftNode, node* rightNode){
-    node* node;
-    node->name = name; 
+node* createNode(char name[], int freq, node* leftNode, node* rightNode){
+    node* node = malloc(sizeof(node));
+    strcpy(node->name, name); //this shit no work
     node->freq = freq;
     node->leftChild = leftNode;
     node->rightChild = rightNode;
@@ -20,12 +23,9 @@ node* createNode(char* name, int freq, node* leftNode, node* rightNode){
 void printTree(node* node){
     if (node == NULL) return;
 
-    // Print left subtree
     printTree(node->leftChild);
 
-    // Print current node
-    printf("%c:%d ", node->name, node->freq);
+    printf("%s : %d ", node->name, node->freq);
 
-    // Print right subtree
     printTree(node->rightChild);
 }

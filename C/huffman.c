@@ -11,28 +11,29 @@
 #include "huffman.h"
 
 int main (int argc, char **argv) {
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-        exit(1);
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <file>\n", argv[0]);
+        exit(EXIT_FAILURE);
     }
-    
+
     char *fileName = argv[1];
     pq* nodeList = pqCreate(); 
-    printf("Hi \n");
 
-    printf("file: %s\n", fileName);
-
-    printf("shit \n");
     nodeList = readFileData(fileName , nodeList);
 
-    int i;
-    for (i = 0; i < pqLength(nodeList); i++){
-        printf("in the loop %d", i);
-        char* name;
+    while (pqLength(nodeList) > 1){
+
+        char name[100];
+
         node* leftNode = pqExtractMin(nodeList);
         node* rightNode = pqExtractMin(nodeList);
+
         int freq = getFreq(leftNode) + getFreq(rightNode);
+
         sprintf(name, "%s%s", getName(leftNode), getName(rightNode)); 
+        printf("name %s\n", name);
+        printf("freq %d \n", freq);
+
         node* newNode = createNode(name, freq, leftNode, rightNode);
         nodeList = pqPush(nodeList, newNode);
     }
@@ -43,11 +44,9 @@ int main (int argc, char **argv) {
 }
 
 pq* readFileData(char* fileName, pq* nodeList){
-    printf("start of read");
     char *line = NULL;
     size_t linecap = 0;
     ssize_t linelen;
-    printf("above loop");
 
     FILE *fp = fopen(fileName, "r");
     if (!fp) {
@@ -58,12 +57,11 @@ pq* readFileData(char* fileName, pq* nodeList){
     char name[10];
     int freq;
     while ((linelen = getline(&line, &linecap, fp)) > 0){
-        printf("in loop");
-        sscanf(line, " %s : %d", &name, &freq);
-        char* charName = name;
-        node* newNode = createNode(charName, freq, NULL, NULL);
+        sscanf(line, "%s : %d", name, &freq);
+        node* newNode = createNode(name, freq, NULL, NULL);
         nodeList = pqPush(nodeList, newNode);
     }
+
     free(line);
     fclose(fp);
     return nodeList;

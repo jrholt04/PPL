@@ -29,6 +29,9 @@ int pqLength(pq* pq){
 }
 
 node* pqExtractMin(pq* pq){
+    if (pq->currentSize == 0) {
+        return NULL;
+    }
     node* nodeptr = pqPop(pq);
     
     //remove the node from the pq
@@ -37,17 +40,12 @@ node* pqExtractMin(pq* pq){
         pq->pq[i - 1] = pq->pq[i];
     }
 
+    pq->currentSize -= 1;
+
     return nodeptr;
 }
 
 pq* pqPush(pq* pq, node* node){
-    if (pq->currentSize == 0){
-        pq->pq[0] = node;
-        pq->currentSize += 1;
-        return pq;
-    }
-
-    // Shift elements to make room for newNode in sorted order
     int j;
     for (j = pq->currentSize - 1; j >= 0 && pq->pq[j]->freq > node->freq; j--) {
         pq->pq[j + 1] = pq->pq[j];
