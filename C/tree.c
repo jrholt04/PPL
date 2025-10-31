@@ -25,7 +25,7 @@ void printTree(node* node){
 
     printTree(node->leftChild);
 
-    printf("%s : %d ", node->name, node->freq);
+    printf("%s : %d \n", node->name, node->freq);
 
     printTree(node->rightChild);
 }
