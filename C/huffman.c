@@ -2,8 +2,8 @@
 // Author: J Holt Transy U
 // Course: PPL
 //
-// Main Program for huffman encoding
-
+//  Main program that constructs a Huffman tree from input data
+//  The program reads a list of symbols and frequencies
 #include <stdio.h>
 #include <stdlib.h>
 #include "pq.h"
@@ -31,8 +31,6 @@ int main (int argc, char **argv) {
         int freq = getFreq(leftNode) + getFreq(rightNode);
 
         sprintf(name, "%s%s", getName(leftNode), getName(rightNode)); 
-        printf("name %s\n", name);
-        printf("freq %d \n", freq);
 
         node* newNode = createNode(name, freq, leftNode, rightNode);
         nodeList = pqPush(nodeList, newNode);

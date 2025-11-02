@@ -2,7 +2,8 @@
 // Author: J Holt Transy U
 // Course: PPL
 //
-// header file for pq
+//  Implementation of a simple priority queue (PQ) for managing nodes
+//  based on their frequency values. Lower frequencies have higher priority
 #include <stdio.h>
 #include <stdlib.h>
 #include "pq.h"
@@ -17,7 +18,7 @@ pq* pqCreate(){
     newPQ->currentSize = 0;
 
     // Initialize all slots to NULL for safety
-    for (int i = 0; i < MAX_SIZE; i++) {
+    for (int i = 0; i < MAX_SIZE_PQ; i++) {
         newPQ->pq[i] = NULL;
     }
 

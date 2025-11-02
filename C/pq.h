@@ -2,33 +2,35 @@
 // Author: J Holt Transy U
 // Course: PPL
 //
-// header file for pq
+//  Header file defining the structure and interface for a simple
+//  priority queue (PQ) used to store and manage tree nodes
+//  The queue maintains elements in ascending order of frequency
 #ifndef PQ_H
 #define PQ_H
 
 #include <stdio.h>
 #include "tree.h"
 
-#define MAX_SIZE 100
+#define MAX_SIZE_PQ 100
 
 typedef struct pq {
-    node* pq[MAX_SIZE];
+    node* pq[MAX_SIZE_PQ];
     int currentSize;
 } pq;
 
-//initialize the pq
+// Allocates and initializes an empty priority queue returns a pointer to the new pq
 pq* pqCreate();
 
-//returns length of pq
+// Returns the current number of elements in the priority queue
 int pqLength(pq* pq);
 
-//returns the smallest node
+// Removes and returns the smallest-frequency node from the queue
 node* pqExtractMin(pq* pq);
 
-//adds element to the pq
+// Inserts a new node into the priority queue, maintaining ascending order by frequency
 pq* pqPush(pq* pq, node* node);
 
-//removes element from pq
+// Returns (but does not remove) the smallest element in the priority queue
 node* pqPop(pq* pq);
 
 #endif

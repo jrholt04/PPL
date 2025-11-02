@@ -1,10 +1,11 @@
 // File: tree.h
 // Author: J Holt Transy U
 // Course: PPL
-// sources: 
-//  strpy(): https://www.geeksforgeeks.org/c/strcpy-in-c/ Accessed 10/31/25. 
+// Sources:
+//  strcpy(): https://www.geeksforgeeks.org/c/strcpy-in-c/ Accessed 10/31/25
 //
-// Headerfile for tree 
+//  Header file defining the node structure and function prototypes
+//  for basic binary tree operations such as creation and accessors
 #ifndef TREE_H
 #define TREE_H
 
@@ -22,13 +23,18 @@ typedef struct node {
 //returns the freqeuncy of the node 
 int getFreq(node* node);
 
-//returns the name of the ndoe
+//returns the name of the node
 char* getName(node* node);
 
-//creates a new node 
+// Allocates and initializes a new node with the given values
+//   name: string name for the node
+//   freq: integer frequency value
+//   leftNode: pointer to left child (NULL if none)
+//   rightNode: pointer to right child (NULL if none)
+//   returns -> pointer to the newly created node
 node* createNode(char* name, int freq, node* leftNode, node* rightNode);
 
-//prints tree
+// Recursively prints the tree using post-order traversal
 void printTree(node* node);
 
 #endif

@@ -1,3 +1,10 @@
+// File: tree.c
+// Author: J Holt Transy U
+// Course: PPL
+//
+//  Implementation file for tree functions
+//  Provides basic operations on a binary tree structure such as
+//  node creation, data access, and recursive post-order printing
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +20,7 @@ char* getName(node* node){
  
 node* createNode(char name[], int freq, node* leftNode, node* rightNode){
     node* node = malloc(sizeof(node));
-    strcpy(node->name, name); //this shit no work
+    strcpy(node->name, name);
     node->freq = freq;
     node->leftChild = leftNode;
     node->rightChild = rightNode;
