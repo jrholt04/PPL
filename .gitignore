@@ -5,7 +5,8 @@
 huffman
 
 #tar files 
-.tar
+*.tar
 
 #.class files 
-.class
+*.class
+
