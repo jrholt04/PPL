@@ -6,3 +6,6 @@ huffman
 
 #tar files 
 .tar
+
+#.class files 
+.class
