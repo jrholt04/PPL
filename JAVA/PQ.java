@@ -1,18 +1,27 @@
+// File: PQ.java
+// Author: J Holt Transy U
+// Course: PPL
+//
+// This class implements a simple priority queue (PQ) to store Node objects used in 
+// Huffman coding The queue is maintained in ascending order of frequency 
 import java.io.*;
 
 class PQ {
     Node[] pq;
     int size;
 
+    //initialize an empty PQ with a fixed max capacity
     PQ(){
         pq = new Node[10000];
         size = 0;
     }
 
+    // Return the current number of elements in the priority queue
     public int pqLength() {
         return size;
     }
 
+    // Remove and return the Node with the smallest frequency
     public Node pqExtractMin(){
         if (size == 0){
             return null;
@@ -28,6 +37,7 @@ class PQ {
         return node;
     }
 
+    // Insert a new Node into the queue while maintaining ascending frequency order
     public void pqPush(Node node) {
         int i;
         for (i = size - 1; i >= 0 && pq[i].getFreq() > node.getFreq(); i--){
@@ -37,11 +47,13 @@ class PQ {
         size += 1;
     }
 
+    // Return but do not remove the Node with the smallest frequency
     public Node pqPop(){
         Node node = pq[0];
         return node;
     }
 
+    // Read frequency data from a file and return a PQ filled with Nodes
     public PQ readFileData(String filePath) {
 		PQ nodeList = new PQ();
 		try {

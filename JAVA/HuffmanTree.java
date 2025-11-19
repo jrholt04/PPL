@@ -1,7 +1,15 @@
+// File: HuffmanTree.java
+// Author: J Holt Transy U
+// Course: PPL
+//
+//  This class builds a Huffman Tree from frequency data stored in a file
+//  It uses a priority queue (PQ) of Node objects to iteratively combine the
+//  two lowest-frequency nodes until only one node (the root of the Huffman tree) remains
 class HuffmanTree{
+    PQ nodeList = new PQ();
 
+    //builds the Huffman tree from the data in the given file
     HuffmanTree(String filePath){
-        PQ nodeList = new PQ();
                 
         nodeList = nodeList.readFileData(filePath);
 
@@ -16,6 +24,10 @@ class HuffmanTree{
 
             nodeList.pqPush(tempNode);
         }
+    }
+
+    // Print the final Huffman Tree
+    public void printHuffmanTree(){
         nodeList.pqExtractMin().printTree();
     }
 }
