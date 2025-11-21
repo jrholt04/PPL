@@ -67,6 +67,10 @@ class PQ {
 				name = inputStream.sval;
 				tokenType = inputStream.nextToken();
 				tokenType = inputStream.nextToken(); //skip the : in the file
+                if (tokenType != 58){
+                    System.out.println("Invalid frequency. No negatives allowed.");
+                    System.exit(1);
+                }
 				freq = inputStream.nval;
                 if (freq <= 0){
                     System.out.println("Invalid frequency. No negatives allowed.");

@@ -29,7 +29,7 @@ class Node {
     // Prints the tree in post order traversail
     public void printTree() {
         if (lchild != null) {
-        lchild.printTree(); 
+            lchild.printTree(); 
         }
         if (rchild != null) {
             rchild.printTree(); 
