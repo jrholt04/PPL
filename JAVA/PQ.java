@@ -65,8 +65,13 @@ class PQ {
 			int tokenType = inputStream.nextToken();
 			while(tokenType != StreamTokenizer.TT_EOF){
 				name = inputStream.sval;
-				tokenType = inputStream.nextToken();
-				tokenType = inputStream.nextToken(); //skip the : in the file
+				tokenType = inputStream.nextToken();//skip the : in the file
+                //check if the middle value is :
+                if (tokenType != 58){ // figuring out it is the value 58 was thanks to a discusion with chase 
+                    System.out.println("Bad data form. intended form: <name> : <frequency>");
+                    System.exit(1);
+                }
+				tokenType = inputStream.nextToken(); 
 				freq = inputStream.nval;
                 if (freq <= 0){
                     System.out.println("Invalid frequency. No negatives allowed.");
