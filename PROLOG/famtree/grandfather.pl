@@ -70,7 +70,7 @@ grandparent(GrandPar, Child) :-
 
 grandfather(GrandFather, Child) :-
     grandparent(GrandFather, Child),
-    male(GrandFather).
+    male(GrandFather), !.
 
 grandmother(GrandMother, Child) :-
     grandparent(GrandMother, Child),
@@ -99,11 +99,11 @@ married(father, stepdaughter).
 
 %parrent raltionships
 parent(widow, stepdaughter).         % widow had her daughter before narrator
-parent(narrator, stepdaughter).%step relationship
+parent(stepdaughter, narrator).      %step relationship
 parent(narrator, nar_baby).          % narrator + widow baby
 parent(widow, nar_baby).             % widow + narrator baby
 parent(stepdaughter, father_son).    % father_son is child of stepdaughter
 parent(father, father_son).          % father is parent of father_son
 parent(father, narrator).            % narrator is child of father
 parent(mother, narrator).            % narrators Mom
-parent(stepdaughter, narrator).%step relationship
+
