@@ -52,7 +52,7 @@ husband(Husband, Wife) :-
 %son in law
 
 grandchild(Grandparent, Child) :-
-   Grandparent(Grandparent, Child).
+   grandparent(Grandparent, Child).
  
 child(Parent, Child) :-
     parent(Parent, Child).
@@ -74,13 +74,13 @@ grandfather(GrandFather, Child) :-
 
 grandmother(GrandMother, Child) :-
     grandparent(GrandMother, Child),
-    female(Grandmother).
+    female(GrandMother).
 
 father(Parent, Child) :-
     parent(Parent, Child),
     male(Parent).
 
-Mother(Parent, Child):-
+mother(Parent, Child):-
     parent(Parent, Child),
     female(Parent).
 
