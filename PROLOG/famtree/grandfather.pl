@@ -36,10 +36,10 @@
 %        It sounds funny, I know, but it really is so,
 %        Oh, I’m my own grandpa.
 
-spouse(X, Y) :- married(X, Y).
+spouse(X, Y) :- married(X, Y),!.
 spouse(X, Y) :- married(Y, X).
 
-wife(Husband, Wife) :-
+wife(Wife, Husband) :-
     spouse(Husband, Wife),
     female(Wife).
 
@@ -47,34 +47,8 @@ husband(Husband, Wife) :-
    spouse(Husband, Wife),
    male(Husband).
 
-%brother-in-law
-
-%son in law
-
-grandchild(Grandparent, Child) :-
-   grandparent(Grandparent, Child).
- 
 child(Parent, Child) :-
     parent(Parent, Child).
-
-% Grandparent through marriage 
-grandparent(GrandPar, Chil) :-
-    spouse(GrandPar, Spouse),
-    parent(Spouse, Parent),
-    parent(Parent, Chil).
-
-% Biological grandparent
-grandparent(GrandPar, Child) :-
-    parent(GrandPar, Parent),
-    parent(Parent, Child).
-
-grandfather(GrandFather, Child) :-
-    grandparent(GrandFather, Child),
-    male(GrandFather), !.
-
-grandmother(GrandMother, Child) :-
-    grandparent(GrandMother, Child),
-    female(GrandMother).
 
 father(Parent, Child) :-
     parent(Parent, Child),
@@ -84,26 +58,58 @@ mother(Parent, Child):-
     parent(Parent, Child),
     female(Parent).
 
+uncle(Uncle, Child) :-
+    sibling(Uncle, Parent),
+    parent(Parent, Child),
+    male(Uncle).
+
+aunt(Aunt, Child) :-
+    sibling(Aunt, Parent),
+    parent(Parent, Child),
+    female(Aunt).
+
+sibling(Sibling1, Sibling2) :-
+    parent(Parent1, Sibling1),
+    parent(Parent2, Sibling2),
+    Parent1 = Parent2.
+
+grandparent(GrandPar, Chil) :- !,
+    spouse(GrandPar, Spouse),
+    parent(Spouse, Parent),
+    parent(Parent, Chil).
+
+grandparent(GrandPar, Child) :- 
+    parent(GrandPar, Parent),
+    parent(Parent, Child).
+
+grandfather(GrandFather, Child) :- 
+    grandparent(GrandFather, Child),
+    male(GrandFather).
+
+grandmother(GrandMother, Child) :-
+    grandparent(GrandMother, Child),
+    female(GrandMother).
+
+grandchild(Grandparent, Child) :-
+   grandparent(Grandparent, Child).
+ 
 % genders
 male(narrator).
 male(father).
-male(nar_baby).
+male(nar_son).
 male(father_son).     % father's son with narrator's stepdaughter
 female(widow).
-female(stepdaughter).
-female(mother).
+female(step_daughter).
 
 % marriages
 married(narrator, widow).
-married(father, stepdaughter).
+married(father, step_daughter).
 
 %parrent raltionships
-parent(widow, stepdaughter).         % widow had her daughter before narrator
-parent(stepdaughter, narrator).      %step relationship
-parent(narrator, nar_baby).          % narrator + widow baby
-parent(widow, nar_baby).             % widow + narrator baby
-parent(stepdaughter, father_son).    % father_son is child of stepdaughter
+parent(widow, step_daughter).         % widow had her daughter before narrator
+parent(step_daughter, narrator).      %step relationship
+parent(narrator, nar_son).          % narrator + widow baby
+parent(widow, nar_son).             % widow + narrator baby
+parent(step_daughter, father_son).    % father_son is child of stepdaughter
 parent(father, father_son).          % father is parent of father_son
 parent(father, narrator).            % narrator is child of father
-parent(mother, narrator).            % narrators Mom
-
