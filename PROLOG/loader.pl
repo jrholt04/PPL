@@ -1,3 +1,1 @@
-["tree.PL"].
-["pq.PL"].
-["huffman.PL"].
+[huffman, tree, pq].
